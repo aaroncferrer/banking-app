@@ -1,38 +1,93 @@
-.App {
-  text-align: center;
+/* CSS RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #f8f2f2;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh; 
 }
 
-.App-link {
-  color: #61dafb;
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* TEMPORARY - FIX LATER */
+.logo1 {
+  margin-right: 175px;
+}
+
+.main-dash {
+  border: 1px solid black; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.money-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20px;
+  border: none;
+  background-color: green;
+  width: 350px;
+  padding: 50px 25px;
+  border-radius: 10px;
+  box-shadow: 1px 10px 20px -12px rgba(0,0,0,0.64);
+  -webkit-box-shadow: 1px 10px 20px -12px rgba(0,0,0,0.64);
+  -moz-box-shadow: 1px 10px 20px -12px rgba(0,0,0,0.64);
+}
+
+.balance {
+  font-size: 40px;
+  letter-spacing: 2px;
+  color: #b33d35;
+  transform: translateY(-30px);
+}
+
+.money-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-container {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: green;
+  padding: 10px;
+  width: 150px;
+  border-radius: 10px;
+  box-shadow: 1px 10px 20px -12px rgba(0,0,0,0.64);
+  -webkit-box-shadow: 1px 10px 20px -12px rgba(0,0,0,0.64);
+  -moz-box-shadow: 1px 10px 20px -12px rgba(0,0,0,0.64);
+}
+
+.deposit, .send-money {
+  margin-bottom: 10px;
+}
+
+.deposit, .withdraw {
+  margin-right: 10px;
 }
