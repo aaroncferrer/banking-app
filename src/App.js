@@ -1,9 +1,17 @@
 import './App.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
-import { faUserFriends } from '@fortawesome/free-solid-svg-icons'
+
+// [FILE IMPORTS]
+import Deposit from './components/Deposit';
+import SendMoney from './components/SendMoney';
+import Withdraw from './components/Withdraw';
+import Friends from './components/Friends';
+import { useState } from 'react';
 
 function App() {
+
+  const [adminBalance, setAdminBalance] = useState(0);
+  console.log(adminBalance);
+
   return (
     <>
     <main>
@@ -15,7 +23,7 @@ function App() {
       <div className="main-dash">
       
         <div className="money-container">
-          <h1 className="balance">$0.00</h1>
+          <h1 className="balance">${adminBalance}.00</h1>
           <h4 className="acct-number">6353 7863 5274 9817</h4>
           <div className='money-footer'>
             <p className="date">01/26</p>
@@ -24,25 +32,10 @@ function App() {
         </div>
 
         <div className="action-container">
-          <div className="action-buttons deposit">
-            <span className="action-symbol">+</span>
-            <FontAwesomeIcon className='action-logo' icon={faDollarSign} />
-            <span className='action-name'>Deposit</span>
-          </div>
-          <div className="action-buttons send-money">
-            <span className="action-symbol">▶</span>
-            <FontAwesomeIcon className='action-logo' icon={faDollarSign} />
-            <span className='action-name'>Send Money</span>
-          </div>
-          <div className="action-buttons withdraw">
-            <span className="action-symbol">─</span>
-            <FontAwesomeIcon className='action-logo' icon={faDollarSign} />
-            <span className='action-name'>Withdraw</span>
-          </div>
-          <div className="action-buttons friends">
-            <FontAwesomeIcon className='action-logo' icon={faUserFriends} />
-            <span className='action-name'>Friends</span>
-          </div>
+          <Deposit adminBalance={adminBalance} setAdminBalance={setAdminBalance} />
+          <SendMoney />
+          <Withdraw />
+          <Friends />
         </div>
 
       </div>
