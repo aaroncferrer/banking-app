@@ -13,7 +13,7 @@ function Dashboard() {
 
   return (
     <>
-    <main>
+    <main className='dash-container'>
       <div className="header-container">
         <img src='./bank-logo.png' alt='Bank Logo' className='logo1' />
         {/* <span className='logo2'>logo here</span> */}

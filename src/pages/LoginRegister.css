@@ -1,3 +1,64 @@
-.bank-logo{
-    width: 200px;
+.container {
+    height: 100vh;
+    font-family: 'Kanit', sans-serif;
+    transform: translateY(-180px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.bank-logo {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.login-header {
+    margin-bottom: 25px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    margin-bottom: 20px;
+}
+
+.input-fields {
+    font-family: 'Kanit', sans-serif;
+    background-color: rgb(255, 249, 249);
+    border-radius: 5px;
+    box-shadow: 1px 10px 20px -12px #413f3f;;
+    -webkit-box-shadow: 1px 10px 20px -12px #413f3f;;
+    -moz-box-shadow: 1px 10px 20px -12px #413f3f;;
+    border: none;
+    padding: 10px;
+}
+
+.username {
+    margin-bottom: 10px;
+}
+
+.login-btn {
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background: rgb(185,66,59);
+    background: linear-gradient(270deg, rgba(185,66,59,1) 0%, rgba(199,81,75,1) 35%, rgba(220,108,101,1) 81%, rgba(228,116,110,1) 100%);
+    box-shadow: 1px 10px 20px -12px #413f3f;;
+    -webkit-box-shadow: 1px 10px 20px -12px #413f3f;;
+    -moz-box-shadow: 1px 10px 20px -12px #413f3f;;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    font-family: 'Kanit', sans-serif;
+    width: 350px;
+    margin-bottom: 15px;
+}
+
+.sign-up {
+    cursor: pointer;
+    color: #ba433c;
+    text-decoration: underline;
+}
+
