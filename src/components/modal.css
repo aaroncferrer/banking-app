@@ -1,0 +1,40 @@
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid black; */
+    position: relative;
+    top: 25%;
+}
+
+.modal-input {
+    font-size: 16px;
+    padding: 5px 10px;
+    font-family: 'Kanit', sans-serif;
+    width: 300px;
+}
+
+.modal-btns-container {
+    margin-top: 20px;
+    /* position: relative;
+    top: 25px;
+    left: 136px; */
+}
+
+.modal-btns {
+    cursor: pointer;
+    margin-left: 8px;
+    font-family: 'Kanit', sans-serif;
+    padding: 4px 12px;
+    border: none;
+    background-color: #413f3f;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-btns:hover {
+    background-color: white;
+    border: 1px solid #413f3f;
+    color: #413f3f;
+}
