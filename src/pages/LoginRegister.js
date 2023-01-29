@@ -2,44 +2,25 @@ import './LoginRegister.css';
 import { useState } from 'react';
 import Modal from 'react-modal';
 
+function LoginRegister(props){
 
-function LoginRegister(){
+    const {adminBalance} = props;
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [users, setUsers] = useState(JSON.parse(localStorage.getItem('users')) || []);
 
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
-
-    // function handleSubmit(e) {
-    //     e.preventDefault();
-
-    //     const firstName = e.target.elements.firstName.value;
-    //     const lastName = e.target.elements.lastName.value;
-    //     const email = e.target.elements.email.value;
-    //     const password = e.target.elements.password.value;
-
-    //     const emailExists = users.find(user => user.email === email);
-    //     if(emailExists){
-    //         return alert('Email is already used.');
-    //     }
-
-    //     const newUser = {firstName, lastName, email, password};
-    //     users.push(newUser);
-    //     setUsers([...users]);
-
-    //     localStorage.setItem('users', JSON.stringify(users));
-    //     closeModal();
-    // }   
     
     function handleSubmit(e) {
         e.preventDefault();
-
+        
         const newUser = {
             firstName: e.target.elements.firstName.value,
             lastName: e.target.elements.lastName.value,
             email: e.target.elements.email.value,
-            password: e.target.elements.password.value
+            password: e.target.elements.password.value,
+            adminBalance
         }
 
         const emailExists = users.find(user => user.email === newUser.email);

@@ -5,11 +5,12 @@ import Deposit from '../components/Deposit';
 import SendMoney from '../components/SendMoney';
 import Withdraw from '../components/Withdraw';
 import Friends from '../components/Friends';
-import { useState } from 'react';
+// import { useState } from 'react';
 
-function Dashboard() {
+function Dashboard(props) {
 
-  const [adminBalance, setAdminBalance] = useState(0);
+  // const [adminBalance, setAdminBalance] = useState(0);
+  const {adminBalance, setAdminBalance} = props;
 
   return (
     <>
