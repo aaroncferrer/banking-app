@@ -6,9 +6,52 @@ import Modal from 'react-modal';
 function LoginRegister(){
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [users, setUsers] = useState(JSON.parse(localStorage.getItem('users')) || []);
 
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
+
+    // function handleSubmit(e) {
+    //     e.preventDefault();
+
+    //     const firstName = e.target.elements.firstName.value;
+    //     const lastName = e.target.elements.lastName.value;
+    //     const email = e.target.elements.email.value;
+    //     const password = e.target.elements.password.value;
+
+    //     const emailExists = users.find(user => user.email === email);
+    //     if(emailExists){
+    //         return alert('Email is already used.');
+    //     }
+
+    //     const newUser = {firstName, lastName, email, password};
+    //     users.push(newUser);
+    //     setUsers([...users]);
+
+    //     localStorage.setItem('users', JSON.stringify(users));
+    //     closeModal();
+    // }   
+    
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        const newUser = {
+            firstName: e.target.elements.firstName.value,
+            lastName: e.target.elements.lastName.value,
+            email: e.target.elements.email.value,
+            password: e.target.elements.password.value
+        }
+
+        const emailExists = users.find(user => user.email === newUser.email);
+        if(emailExists){
+            return alert('Email is already used.');
+        }
+
+        users.push(newUser);
+        setUsers(users);
+        localStorage.setItem('users', JSON.stringify(users));
+        closeModal();
+    }
 
     return(
         <>
@@ -57,23 +100,27 @@ function LoginRegister(){
             }}
         >
             <h2>Sign Up</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>
-                    Name:
-                    <input type="text" placeholder='Enter your name'/>
+                    First Name:
+                    <input type="text" name='firstName' required placeholder='Enter your first name'/>
+                </label>
+                <label>
+                    Last Name:
+                    <input type="text" name='lastName' required placeholder='Enter your last name'/>
                 </label>
                 <label>
                     Email:
-                    <input type="email" placeholder='Enter your email'/>
+                    <input type="email" name='email' required placeholder='Enter your email'/>
                 </label>
                 <label>
                     Password:
-                    <input type="password" placeholder='Enter your password'/>
+                    <input type="password" name='password' required placeholder='Enter your password'/>
                 </label>
 
-                <button onClick={closeModal}>Submit</button>
-                </form>
-            </Modal>
+                <button>Submit</button>
+            </form>
+        </Modal>
         </>
     )
 }
