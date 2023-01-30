@@ -5,12 +5,16 @@ import Deposit from '../components/Deposit';
 import SendMoney from '../components/SendMoney';
 import Withdraw from '../components/Withdraw';
 import Friends from '../components/Friends';
-// import { Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Dashboard(props) {
   const {adminBalance, setAdminBalance} = props;
 
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+  function handleLogout() {
+    localStorage.removeItem('currentUser');
+  }
 
   return (
     <>
@@ -40,7 +44,11 @@ function Dashboard(props) {
         </div>
         </div>
 
-        <button className='logout'>Logout</button>
+        <button className='logout-btn' onClick={handleLogout}>
+          <Link to='/' className='logout-link'>Logout</Link>
+        </button>
+        
+        {/* <button className="logout-btn">Logout</button> */}
 
       </div>
     </main>

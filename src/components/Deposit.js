@@ -8,6 +8,7 @@ import ModalComponent from './Modal';
 function Deposit(props){
 
     const {setAdminBalance, adminBalance} = props;
+
     const [inputValue, setInputValue] = useState('');
 
     const onTransaction = () => {
