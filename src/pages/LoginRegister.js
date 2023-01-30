@@ -1,16 +1,34 @@
 import './LoginRegister.css';
 import { useState } from 'react';
 import Modal from 'react-modal';
+import { Navigate } from 'react-router-dom';
 
 function LoginRegister(props){
 
-    const {adminBalance} = props;
+    const {adminBalance, setAdminBalance} = props;
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [currentUser, setCurrentUser] = useState(null);
+    const [users, setUsers] = useState(JSON.parse(localStorage.getItem('users')) || []);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [users, setUsers] = useState(JSON.parse(localStorage.getItem('users')) || []);
 
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
+
+    function handleLogin(e) {
+        e.preventDefault();
+
+        const user = users.find(user => user.email === email && user.password === password);
+
+        if(!user){
+            return alert('Incorrect email or password. Please try again.')
+        }
+        setCurrentUser(user);
+        setAdminBalance(user.adminBalance);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+    }
     
     function handleSubmit(e) {
         e.preventDefault();
@@ -35,18 +53,38 @@ function LoginRegister(props){
     }
 
     return(
+        
+        (currentUser !== null) ?
+        <Navigate to='/dashboard' />
+
+        :
+        
         <>
         <main className='container'>
         <img src='./bank-logo.png' alt='Bank Logo' className='bank-logo' />
         <h2 className='login-header'>Welcome to Avion Bank!</h2>
 
         <div className="input-container">
-            <input type='text' placeholder='Enter username' className='username input-fields'></input>
-            <input type='text' placeholder='Enter password' className='password input-fields'></input>
+            <input 
+                type='email' 
+                placeholder='Enter email' 
+                className='email input-fields'
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+            >
+            </input>
+            <input 
+                type='password' 
+                placeholder='Enter password' 
+                className='password input-fields'
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+            >
+            </input>
         </div>
 
         <div>
-        <button className='login-btn'>Log In</button>
+        <button className='login-btn' onClick={handleLogin}>Log In</button>
         </div>
 
         <p className='login-text'>Don't have an account? <span className='sign-up' onClick={openModal}>Sign up!</span></p>
