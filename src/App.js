@@ -6,8 +6,14 @@ import { useState } from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App(){
+
+  // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   
-  const [adminBalance, setAdminBalance] = useState(0);
+  // const [adminBalance, setAdminBalance] = useState(0);
+
+  // const [adminBalance, setAdminBalance] = useState(JSON.parse(localStorage.getItem('currentUser')).adminBalance || 0);
+
+  const [adminBalance, setAdminBalance] = useState(localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')).adminBalance : 0);
 
   return(
     <Router>

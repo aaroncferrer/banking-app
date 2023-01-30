@@ -13,6 +13,11 @@ function Dashboard(props) {
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
   function handleLogout() {
+    const users = JSON.parse(localStorage.getItem('users'))
+    console.log(users)
+    const user = users.find(user => user.email === currentUser.email);
+    user.adminBalance = currentUser.adminBalance;
+    localStorage.setItem('users', JSON.stringify(users));
     localStorage.removeItem('currentUser');
   }
 
@@ -48,7 +53,7 @@ function Dashboard(props) {
           <Link to='/' className='logout-link'>Logout</Link>
         </button>
         
-        {/* <button className="logout-btn">Logout</button> */}
+        {/* <button className="logout-btn" onClick={handleLogout}>Logout</button> */}
 
       </div>
     </main>

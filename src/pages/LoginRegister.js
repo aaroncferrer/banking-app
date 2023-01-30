@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 
 function LoginRegister(props){
 
-    const {adminBalance, setAdminBalance} = props;
+    const {setAdminBalance} = props;
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -38,7 +38,7 @@ function LoginRegister(props){
             lastName: e.target.elements.lastName.value,
             email: e.target.elements.email.value,
             password: e.target.elements.password.value,
-            adminBalance
+            adminBalance: 0
         }
 
         const emailExists = users.find(user => user.email === newUser.email);
