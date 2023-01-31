@@ -65,28 +65,30 @@ function LoginRegister(props){
         <img src='./bank-logo.png' alt='Bank Logo' className='bank-logo' />
         <h2 className='login-header'>Welcome to Avion Bank!</h2>
 
-        <div className="input-container">
-            <input 
-                type='email' 
-                placeholder='Enter email' 
-                className='email input-fields'
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-            >
-            </input>
-            <input 
-                type='password' 
-                placeholder='Enter password' 
-                className='password input-fields'
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-            >
-            </input>
-        </div>
+        <form onSubmit={handleLogin}>
+            <div className="input-container">
+                <input 
+                    type='email' 
+                    placeholder='Enter email' 
+                    className='email input-fields'
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                >
+                </input>
+                <input 
+                    type='password' 
+                    placeholder='Enter password' 
+                    className='password input-fields'
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                >
+                </input>
+            </div>
 
-        <div>
-        <button className='login-btn' onClick={handleLogin}>Log In</button>
-        </div>
+            <div>
+            <button className='login-btn' onClick={handleLogin}>Log In</button>
+            </div>
+        </form>
 
         <p className='login-text'>Don't have an account? <span className='sign-up' onClick={openModal}>Sign up!</span></p>
         </main>
@@ -124,7 +126,7 @@ function LoginRegister(props){
                 <form className='reg-form' onSubmit={handleSubmit}>
                     <label className='reg-label'>
                         First Name:
-                        <input type="text" name='firstName' className='reg-input' required placeholder='Enter your first name'/>
+                        <input autoFocus type="text" name='firstName' className='reg-input' required placeholder='Enter your first name'/>
                     </label>
                     <label className='reg-label'>
                         Last Name:
