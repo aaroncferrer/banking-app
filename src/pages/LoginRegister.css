@@ -62,3 +62,60 @@
     text-decoration: underline;
 }
 
+/* MODAL */
+.reg-container {
+    color: #413f3f;
+    font-family: 'Kanit', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 25px;
+}
+
+.reg-header {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 32px;
+}
+
+.reg-header:after {
+    content: " ";
+    display: block;
+    border-bottom: 1px solid black;
+}
+
+.reg-label {
+    font-size: 22px;
+    align-self: flex-start;
+    display: block;
+}
+
+.reg-input {
+    font-size: 14px;
+    width: 100%;
+    font-family: 'Kanit', sans-serif;
+    align-self: flex-start;
+    display: block;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 1px 10px 20px -12px #413f3f;;
+    -webkit-box-shadow: 1px 10px 20px -12px #413f3f;;
+    -moz-box-shadow: 1px 10px 20px -12px #413f3f;;
+}
+
+.reg-btn {
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Kanit', sans-serif;
+    padding: 4px 12px;
+    border: none;
+    background-color: #605e5e;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    margin-top: 5px;
+}
+
+.reg-btn:hover {
+    background-color: #413f3f;
+}

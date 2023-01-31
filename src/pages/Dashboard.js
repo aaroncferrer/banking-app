@@ -14,7 +14,7 @@ function Dashboard(props) {
 
   function handleLogout() {
     const users = JSON.parse(localStorage.getItem('users'))
-    console.log(users)
+    // console.log(users)
     const user = users.find(user => user.email === currentUser.email);
     user.adminBalance = currentUser.adminBalance;
     localStorage.setItem('users', JSON.stringify(users));

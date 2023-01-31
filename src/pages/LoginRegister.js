@@ -1,4 +1,4 @@
-import './LoginRegister.css';
+import './loginRegister.css';
 import { useState } from 'react';
 import Modal from 'react-modal';
 import { Navigate } from 'react-router-dom';
@@ -118,28 +118,30 @@ function LoginRegister(props){
                 padding: '0px'
                 }
             }}
-        >
-            <h2>Sign Up</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    First Name:
-                    <input type="text" name='firstName' required placeholder='Enter your first name'/>
-                </label>
-                <label>
-                    Last Name:
-                    <input type="text" name='lastName' required placeholder='Enter your last name'/>
-                </label>
-                <label>
-                    Email:
-                    <input type="email" name='email' required placeholder='Enter your email'/>
-                </label>
-                <label>
-                    Password:
-                    <input type="password" name='password' required placeholder='Enter your password'/>
-                </label>
+        >   
+            <div className="reg-container">
+                <h2 className='reg-header'>REGISTRATION FORM</h2>
+                <form className='reg-form' onSubmit={handleSubmit}>
+                    <label className='reg-label'>
+                        First Name:
+                        <input type="text" name='firstName' className='reg-input' required placeholder='Enter your first name'/>
+                    </label>
+                    <label className='reg-label'>
+                        Last Name:
+                        <input type="text" name='lastName' className='reg-input' required placeholder='Enter your last name'/>
+                    </label>
+                    <label className='reg-label'>
+                        Email:
+                        <input type="email" name='email' className='reg-input' required placeholder='Enter your email'/>
+                    </label>
+                    <label className='reg-label'>
+                        Password:
+                        <input type="password" name='password' className='reg-input' required placeholder='Enter your password'/>
+                    </label>
 
-                <button>Submit</button>
-            </form>
+                    <button className='reg-btn'>Submit</button>
+                </form>
+            </div>
         </Modal>
         </>
     )
