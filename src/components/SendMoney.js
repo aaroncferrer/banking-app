@@ -1,18 +1,49 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
-
-import { useState } from 'react';
 import Modal from 'react-modal';
+import { useState } from 'react';
 
-function SendMoney(){
+function SendMoney(props){
 
-    const users = JSON.parse(localStorage.getItem('users'));
-    const userNames = users.map(user => user.firstName);
-
+    const [selectedUser, setSelectedUser] = useState('');
+    const [amount, setAmount] = useState('');
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const openModal = () => setModalIsOpen(true)    ;
+    const users = JSON.parse(localStorage.getItem('users'));
+    const {setAdminBalance} = props;
+
+    const handleSelect = (e) => setSelectedUser(e.target.value);
+    const handleAmount = (e) => setAmount(e.target.value);
+    const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
+
+    function handleSubmit(e){
+        e.preventDefault();
+
+        // Get loggedIn in user from localStorage
+        const sender = JSON.parse(localStorage.getItem('currentUser'));
+        // Find receiver in users array from localStorage
+        const receiver = users.find(user => user.email === selectedUser);
+
+        if(!receiver){
+            alert('Please select a recipient.');
+            return
+        } else if(sender.email === selectedUser){
+            alert('Can\'t transfer to own account. Deposit or withdraw instead.');
+        } else if(sender.adminBalance < amount){
+            alert('Insufficient funds.');
+        } else {
+            sender.adminBalance -= +amount;
+            receiver.adminBalance += +amount;
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('currentUser', JSON.stringify(sender))
+            setAdminBalance(sender.adminBalance);
+            setTimeout(() => alert('Money successfully sent!'), 175);
+            setSelectedUser('');
+            setAmount('');
+        }
+
+    }
 
     return (
         <>
@@ -36,11 +67,8 @@ function SendMoney(){
                 },
                 content: {
                 position: 'absolute',
-                top: '15%',
-                left: '35%',
-                right: '35%',
-                bottom: '10%',
-                border: 'none',
+                height: '500px',
+                width: '350px',
                 background: '#f3e9e9',
                 overflow: 'auto',
                 WebkitOverflowScrolling: 'touch',
@@ -50,13 +78,17 @@ function SendMoney(){
                 }
             }}
         >   
-            <div>
-                {userNames.map((firstName, index) => (
-                    <p key={index}>{firstName} {index}</p>
-                ))}
-            </div>
+            <form onSubmit={handleSubmit}>
+                <select onChange={handleSelect} value={selectedUser}>
+                    <option value=''>Select a user</option>
+                    {users.map(user => (
+                        <option key={user.email} value={user.email}>{user.firstName}</option>
+                    ))}
+                </select>
+                <input type="text" value={amount} onChange={handleAmount} placeholder="Enter amount" />
+                <button type="submit">Send</button>
+            </form>
         </Modal>
-        
         </>
     )
 }

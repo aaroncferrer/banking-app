@@ -8,6 +8,7 @@ import Friends from '../components/Friends';
 import { Link } from 'react-router-dom';
 
 function Dashboard(props) {
+  
   const {adminBalance, setAdminBalance} = props;
 
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -42,8 +43,8 @@ function Dashboard(props) {
 
         <div className="action-container">
           <Deposit adminBalance={adminBalance} setAdminBalance={setAdminBalance} />
-          <SendMoney />
-          <Withdraw adminBalance={adminBalance} setAdminBalance={setAdminBalance}/>
+          <SendMoney adminBalance={adminBalance} setAdminBalance={setAdminBalance}/>
+          <Withdraw setAdminBalance={setAdminBalance}/>
           <Friends />
         </div>
         </div>

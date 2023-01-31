@@ -10,7 +10,7 @@ function Friends(){
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const openModal = () => setModalIsOpen(true)    ;
+    const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
 
     return(

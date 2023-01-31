@@ -50,7 +50,7 @@ function LoginRegister(props){
         setUsers(users);
         localStorage.setItem('users', JSON.stringify(users));
         closeModal();
-        setTimeout(() => {alert('User successfully registered.');}, 175);
+        setTimeout(() => alert('User successfully registered.'), 175);
     }
 
     return(
