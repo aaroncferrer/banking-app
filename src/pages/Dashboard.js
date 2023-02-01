@@ -44,7 +44,7 @@ function Dashboard(props) {
         <div className="action-container">
           <Deposit adminBalance={adminBalance} setAdminBalance={setAdminBalance} />
           <SendMoney adminBalance={adminBalance} setAdminBalance={setAdminBalance}/>
-          <Withdraw setAdminBalance={setAdminBalance}/>
+          <Withdraw adminBalance={adminBalance} setAdminBalance={setAdminBalance}/>
           <Friends />
         </div>
         </div>

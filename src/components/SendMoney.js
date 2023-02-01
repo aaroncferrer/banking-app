@@ -1,9 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
-import Modal from 'react-modal';
+// import Modal from 'react-modal';
 import { useState } from 'react';
+import ModalComponent from './ModalComponent';
 
 function SendMoney(props){
+
+    const [showSendMoney, setShowSendMoney] = useState(false);
 
     const [selectedUser, setSelectedUser] = useState('');
     const [amount, setAmount] = useState('');
@@ -14,8 +17,8 @@ function SendMoney(props){
 
     const handleSelect = (e) => setSelectedUser(e.target.value);
     const handleAmount = (e) => setAmount(e.target.value);
-    const openModal = () => setModalIsOpen(true);
-    const closeModal = () => setModalIsOpen(false);
+    // const openModal = () => setModalIsOpen(true);
+    // const closeModal = () => setModalIsOpen(false);
 
     function handleSubmit(e){
         e.preventDefault();
@@ -42,53 +45,21 @@ function SendMoney(props){
             setSelectedUser('');
             setAmount('');
         }
-
     }
 
     return (
         <>
-        <div className="action-buttons send-money" onClick={openModal}>
+        <div 
+            className="action-buttons send-money" 
+            onClick={() => {setModalIsOpen(true); setShowSendMoney(true)}}
+        >
             <span className="action-symbol">▶</span>
             <FontAwesomeIcon className='action-logo' icon={faDollarSign} />
             <span className='action-name'>Send Money</span>
         </div>
 
-        <Modal 
-        isOpen={modalIsOpen} 
-        onRequestClose={closeModal}
-        style={{
-                overlay: {
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: 'rgba(0, 0, 0, 0.4)'
-                },
-                content: {
-                position: 'absolute',
-                height: '500px',
-                width: '350px',
-                background: '#f3e9e9',
-                overflow: 'auto',
-                WebkitOverflowScrolling: 'touch',
-                borderRadius: '10px',
-                outline: 'none',
-                padding: '0px'
-                }
-            }}
-        >   
-            <form onSubmit={handleSubmit}>
-                <select onChange={handleSelect} value={selectedUser}>
-                    <option value=''>Select a user</option>
-                    {users.map(user => (
-                        <option key={user.email} value={user.email}>{user.firstName}</option>
-                    ))}
-                </select>
-                <input type="text" value={amount} onChange={handleAmount} placeholder="Enter amount" />
-                <button type="submit">Send</button>
-            </form>
-        </Modal>
+        <ModalComponent handleSelect={handleSelect} selectedUser={selectedUser} amount={amount} handleAmount={handleAmount} handleSubmit={handleSubmit} modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} showSendMoney={showSendMoney} setShowSendMoney={setShowSendMoney} />
+
         </>
     )
 }

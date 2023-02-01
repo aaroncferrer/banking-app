@@ -3,9 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* border: 2px solid black; */
     position: relative;
-    top: 25%;
 }
 
 .modal-input {
@@ -17,9 +15,11 @@
 
 .modal-btns-container {
     margin-top: 20px;
-    /* position: relative;
-    top: 25px;
-    left: 136px; */
+}
+
+.hidden {
+    border: 2px solid red;
+    /* display: none; */
 }
 
 .modal-btns {

@@ -3,7 +3,9 @@ import './modal.css';
 
 function ModalComponent(props){
 
-    const {modalIsOpen, setModalIsOpen, inputValue, onInputChange, onTransaction} = props;
+    const {modalIsOpen, setModalIsOpen, inputValue, onInputChange, onTransaction, handleSelect, selectedUser, amount, handleAmount, handleSubmit, showSendMoney} = props;
+
+    const users = JSON.parse(localStorage.getItem('users'));
 
     return(
         <>
@@ -23,11 +25,15 @@ function ModalComponent(props){
                 },
                 content: {
                 position: 'absolute',
-                top: '15%',
-                left: '35%',
-                right: '35%',
-                bottom: '65%',
-                border: 'none',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                textAlign: 'center',
+                height: '150px',
+                width: '400px',
                 background: '#f3e9e9',
                 overflow: 'auto',
                 WebkitOverflowScrolling: 'touch',
@@ -38,6 +44,21 @@ function ModalComponent(props){
             }}
         >
             <div className="modal-content">
+
+                <div className="send-money" style={{display: showSendMoney ? 'block' : 'none'}}>
+                    <form onSubmit={handleSubmit}>
+                        <select onChange={handleSelect} value={selectedUser}>
+                            <option value=''>Select a user</option>
+                            {users.map(user => (
+                                <option key={user.email} value={user.email}>{user.firstName}</option>
+                            ))}
+                        </select>
+                        <input type="text" value={amount} onChange={handleAmount} placeholder="Enter amount" />
+                    <button type="submit">Send</button>
+                    </form>
+                </div>
+                
+                <div className="deposit-withdraw" style={{display: showSendMoney && 'none'}}>
                 <input 
                     type="text" 
                     className='modal-input' 
@@ -53,6 +74,7 @@ function ModalComponent(props){
                     <button className='modal-btns' onClick={() => setModalIsOpen(false)}>
                         Close
                     </button>
+                </div>
                 </div>
             </div>
         </Modal>

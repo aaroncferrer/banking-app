@@ -3,12 +3,11 @@ import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
 
 import { useState } from 'react';
 
-import ModalComponent from './Modal';
+import ModalComponent from './ModalComponent';
 
 function Deposit(props){
 
     const {setAdminBalance, adminBalance} = props;
-
     const [inputValue, setInputValue] = useState('');
 
     const onTransaction = () => {

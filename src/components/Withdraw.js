@@ -3,7 +3,7 @@ import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
 
 import { useState } from 'react';
 
-import ModalComponent from './Modal';
+import ModalComponent from './ModalComponent';
 
 function Withdraw(props){
 
