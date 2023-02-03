@@ -1,0 +1,29 @@
+.friends-table {
+    font-family: 'Kanit', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+caption {
+    font-size: 26px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.friends-table th,
+.friends-table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+  
+.friends-table th {
+    background-color: #dddddd;
+    text-align: center;
+}
+
+.friends-table td {
+    font-size: 14px;
+}
+
+  

@@ -3,7 +3,7 @@ import './modal.css';
 
 function ModalComponent(props){
 
-    const {modalIsOpen, setModalIsOpen, inputValue, onInputChange, onTransaction, handleSelect, selectedUser, amount, handleAmount, handleSubmit, showSendMoney} = props;
+    const {modalIsOpen, setModalIsOpen, inputValue, onInputChange, onTransaction, handleSelect, selectedUser, amount, handleAmount, showSendMoney} = props;
 
     const users = JSON.parse(localStorage.getItem('users'));
 
@@ -45,16 +45,15 @@ function ModalComponent(props){
         >
             <div className="modal-content">
 
-                <div className="send-money" style={{display: showSendMoney ? 'block' : 'none'}}>
-                    <form onSubmit={handleSubmit}>
-                        <select onChange={handleSelect} value={selectedUser}>
-                            <option value=''>Select a user</option>
+                <div className="send-modal" style={{display: showSendMoney ? 'block' : 'none'}}>
+                    <form className='send-form' onSubmit={onTransaction}>
+                        <select className='send-select' onChange={handleSelect} value={selectedUser}>
+                            <option className='send-money-option' value=''>Select a user</option>
                             {users.map(user => (
-                                <option key={user.email} value={user.email}>{user.firstName}</option>
+                                <option className='send-money-option' key={user.email} value={user.email}>{user.firstName}</option>
                             ))}
                         </select>
-                        <input type="text" value={amount} onChange={handleAmount} placeholder="Enter amount" />
-                    <button type="submit">Send</button>
+                        <input className='send-input' type="text" value={amount} onChange={handleAmount} placeholder="Enter amount" />
                     </form>
                 </div>
                 
@@ -67,14 +66,14 @@ function ModalComponent(props){
                     onChange={onInputChange} 
                     onKeyDown={(e) => e.key === 'Enter' ? (onTransaction(), setModalIsOpen(false)) : null} 
                 />
+                </div>
                 <div className="modal-btns-container">
-                    <button className='modal-btns' onClick={() => {onTransaction(); setModalIsOpen(false)}}>
+                    <button className='modal-btns' onClick={(e) => {onTransaction(e); setModalIsOpen(false)}}>
                         Enter
                     </button>
                     <button className='modal-btns' onClick={() => setModalIsOpen(false)}>
                         Close
                     </button>
-                </div>
                 </div>
             </div>
         </Modal>

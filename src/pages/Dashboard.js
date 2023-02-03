@@ -13,6 +13,12 @@ function Dashboard(props) {
 
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
+  // ------> Getting Date
+  const date = new Date();
+  const dayNumber = String(date.getDate()).padStart(2, '0');
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+
   function handleLogout() {
     const users = JSON.parse(localStorage.getItem('users'))
     const user = users.find(user => user.email === currentUser.email);
@@ -36,7 +42,7 @@ function Dashboard(props) {
           <h1 className="balance">${currentUser.adminBalance}.00</h1>
           <h4 className="acct-number">6353 7863 5274 9817</h4>
           <div className='money-footer'>
-            <p className="date">01/26</p>
+            <p className="date">{month}/{dayNumber}/{year}</p>
             <span className="card-type">VISA</span>
           </div>
         </div>

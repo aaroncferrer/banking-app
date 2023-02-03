@@ -20,7 +20,7 @@ function SendMoney(props){
     // const openModal = () => setModalIsOpen(true);
     // const closeModal = () => setModalIsOpen(false);
 
-    function handleSubmit(e){
+    function onTransaction(e){
         e.preventDefault();
 
         // Get loggedIn in user from localStorage
@@ -58,7 +58,7 @@ function SendMoney(props){
             <span className='action-name'>Send Money</span>
         </div>
 
-        <ModalComponent handleSelect={handleSelect} selectedUser={selectedUser} amount={amount} handleAmount={handleAmount} handleSubmit={handleSubmit} modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} showSendMoney={showSendMoney} setShowSendMoney={setShowSendMoney} />
+        <ModalComponent handleSelect={handleSelect} selectedUser={selectedUser} amount={amount} handleAmount={handleAmount} onTransaction={onTransaction} modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} showSendMoney={showSendMoney} setShowSendMoney={setShowSendMoney} />
 
         </>
     )

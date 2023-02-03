@@ -36,3 +36,15 @@
 .modal-btns:hover {
     background-color: #413f3f;
 }
+
+.send-form {
+    /* border: 2px solid red; */
+    display: flex;
+    width: 300px;
+    justify-content: space-around;
+}
+
+.send-select, .send-input {
+    font-family: 'Kanit', sans-serif;
+    padding: 5px;
+}

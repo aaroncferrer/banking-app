@@ -11,8 +11,13 @@ function Withdraw(props){
     const [inputValue, setInputValue] = useState('');
 
     const onTransaction = () => {
-        setAdminBalance(adminBalance - +inputValue);
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        if(currentUser.adminBalance <= 0 || inputValue > currentUser.adminBalance){
+            alert('Insufficient funds.');
+            return
+        }
+        setAdminBalance(adminBalance - +inputValue);
         currentUser.adminBalance = adminBalance - +inputValue;
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         setInputValue('');
