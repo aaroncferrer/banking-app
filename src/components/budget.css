@@ -1,0 +1,63 @@
+.budget-table {
+    background-color: #f5eaeaf4;
+    border-radius: 10px;
+    box-shadow: 1px 10px 20px -12px rgba(0,0,0,0.64);
+    -webkit-box-shadow: 1px 10px 20px -12px rgba(0,0,0,0.64);
+    -moz-box-shadow: 1px 10px 20px -12px rgba(0,0,0,0.64);
+    margin-top: 10px;
+    width: 100%;
+    padding: 12px 25px;
+}
+  
+.budget-caption {
+    color: #b33d35;
+    font-size: 20px;
+    font-weight: bolder;
+}
+  
+.budget-table th {
+    text-align: start;
+}
+  
+.budget-first-column {
+    width: 70%;
+}
+
+.budget-second-column {
+    width: 20%;
+}
+  
+.budget-table td {
+    padding-right: 10px;
+}
+  
+tbody tr {
+    height: 25px;
+    font-size: 14px;
+}
+  
+.budget-label {
+    border-bottom: 2px solid green;
+}
+  
+.budget-action {
+    cursor: pointer;
+    margin-right: 10px;
+}
+  
+.budget-btn {
+    cursor: pointer;
+    color: white;
+    letter-spacing: 1px;
+    background: rgb(185,66,59);
+    background: linear-gradient(270deg, rgba(185,66,59,1) 0%, rgba(199,81,75,1) 35%, rgba(220,108,101,1) 81%, rgba(228,116,110,1) 100%);
+    box-shadow: 1px 10px 20px -12px #413f3f;;
+    -webkit-box-shadow: 1px 10px 20px -12px #413f3f;;
+    -moz-box-shadow: 1px 10px 20px -12px #413f3f;;
+    border: none;
+    border-radius: 25px;
+    padding: 5px;
+    font-family: 'Kanit', sans-serif;
+    width: 150px;
+    margin-top: 15px;
+}

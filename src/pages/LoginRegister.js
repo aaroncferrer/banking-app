@@ -38,7 +38,8 @@ function LoginRegister(props){
             lastName: e.target.elements.lastName.value,
             email: e.target.elements.email.value,
             password: e.target.elements.password.value,
-            adminBalance: 0
+            adminBalance: 0,
+            expenses: [],
         }
 
         const emailExists = users.find(user => user.email === newUser.email);

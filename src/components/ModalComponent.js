@@ -3,7 +3,7 @@ import './modal.css';
 
 function ModalComponent(props){
 
-    const {modalIsOpen, setModalIsOpen, inputValue, onInputChange, onTransaction, handleSelect, selectedUser, amount, handleAmount, showSendMoney} = props;
+    const {modalIsOpen, setModalIsOpen, inputValue, onInputChange, onTransaction, handleSelect, selectedUser, amount, handleAmount, showSendMoney, showBudget, expenseValue, setExpenseValue, costValue, setCostValue} = props;
 
     const users = JSON.parse(localStorage.getItem('users'));
 
@@ -45,6 +45,25 @@ function ModalComponent(props){
         >
             <div className="modal-content">
 
+                <div className="budget-modal" style={{display: showBudget ? 'block' : 'none'}}>
+                    <input 
+                        type='text'
+                        name='expense'
+                        className='budget-input' 
+                        placeholder='input expense'
+                        value={expenseValue} 
+                        onChange={e => setExpenseValue(e.target.value)}
+                    />
+                    <input 
+                        type='text'
+                        name='cost'
+                        className='budget-input' 
+                        placeholder='input cost'
+                        value={costValue} 
+                        onChange={e => setCostValue(e.target.value)}
+                    />
+                </div>
+
                 <div className="send-modal" style={{display: showSendMoney ? 'block' : 'none'}}>
                     <form className='send-form' onSubmit={onTransaction}>
                         <select className='send-select' onChange={handleSelect} value={selectedUser}>
@@ -57,7 +76,7 @@ function ModalComponent(props){
                     </form>
                 </div>
                 
-                <div className="deposit-withdraw" style={{display: showSendMoney && 'none'}}>
+                <div className="deposit-withdraw" style={{display: showSendMoney || showBudget ? 'none' : 'block'}}>
                 <input 
                     type="text" 
                     className='modal-input' 

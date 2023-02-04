@@ -55,7 +55,6 @@ body {
 
 .logo1 {
   width: 175px;
-  margin-bottom: 10px;
   transform: translateY(-40px);
 }
 
@@ -155,6 +154,5 @@ body {
 .deposit, .withdraw {
   margin-right: 10px;
 }
-
 
 

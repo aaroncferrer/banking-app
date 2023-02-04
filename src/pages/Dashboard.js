@@ -6,10 +6,11 @@ import SendMoney from '../components/SendMoney';
 import Withdraw from '../components/Withdraw';
 import Friends from '../components/Friends';
 import { Link } from 'react-router-dom';
+import Budget from '../components/Budget';
 
 function Dashboard(props) {
   
-  const {adminBalance, setAdminBalance} = props;
+  const {adminBalance, setAdminBalance, setExpenses} = props;
 
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -23,6 +24,7 @@ function Dashboard(props) {
     const users = JSON.parse(localStorage.getItem('users'))
     const user = users.find(user => user.email === currentUser.email);
     user.adminBalance = currentUser.adminBalance;
+    user.expenses = currentUser.expenses
     localStorage.setItem('users', JSON.stringify(users));
     localStorage.removeItem('currentUser');
   }
@@ -54,6 +56,8 @@ function Dashboard(props) {
           <Friends />
         </div>
         </div>
+
+        <Budget setExpenses={setExpenses} />
 
         <button className='logout-btn' onClick={handleLogout}>
           <Link to='/' className='logout-link'>Logout</Link>

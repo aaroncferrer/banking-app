@@ -51,8 +51,8 @@ function Friends(){
                 }
             }}
         >   
-            <table class="friends-table">
-            <caption>Friends List</caption>
+            <table className='friends-table'>
+            <caption className='friends-caption'>Friends List</caption>
             <thead>
                 <tr>
                     <th>Name</th>
