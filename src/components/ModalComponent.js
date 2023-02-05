@@ -46,22 +46,27 @@ function ModalComponent(props){
             <div className="modal-content">
 
                 <div className="budget-modal" style={{display: showBudget ? 'block' : 'none'}}>
-                    <input 
-                        type='text'
-                        name='expense'
-                        className='budget-input' 
-                        placeholder='input expense'
-                        value={expenseValue} 
-                        onChange={e => setExpenseValue(e.target.value)}
-                    />
-                    <input 
-                        type='text'
-                        name='cost'
-                        className='budget-input' 
-                        placeholder='input cost'
-                        value={costValue} 
-                        onChange={e => setCostValue(e.target.value)}
-                    />
+                    <form className='budget-form' onSubmit={onTransaction}>
+                        <h2 className="budget-form-header">Add Expense</h2>
+                        <input 
+                            type='text'
+                            name='expense'
+                            className='budget-input' 
+                            placeholder='Input expense'
+                            value={expenseValue} 
+                            onChange={e => setExpenseValue(e.target.value)}
+                            required
+                        />
+                        <input 
+                            type='text'
+                            name='cost'
+                            className='budget-input' 
+                            placeholder='Input cost'
+                            value={costValue} 
+                            onChange={e => setCostValue(e.target.value)}
+                            required
+                        />
+                    </form>
                 </div>
 
                 <div className="send-modal" style={{display: showSendMoney ? 'block' : 'none'}}>

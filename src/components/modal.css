@@ -17,11 +17,6 @@
     margin-top: 20px;
 }
 
-.hidden {
-    border: 2px solid red;
-    /* display: none; */
-}
-
 .modal-btns {
     cursor: pointer;
     margin-left: 8px;
@@ -38,7 +33,6 @@
 }
 
 .send-form {
-    /* border: 2px solid red; */
     display: flex;
     width: 300px;
     justify-content: space-around;
@@ -46,5 +40,15 @@
 
 .send-select, .send-input {
     font-family: 'Kanit', sans-serif;
+    padding: 5px;
+}
+
+.budget-form {
+    font-family: 'Kanit', sans-serif;
+}
+
+.budget-input {
+    font-family: 'Kanit', sans-serif;
+    margin: 5px 2px 0px;
     padding: 5px;
 }

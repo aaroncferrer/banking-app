@@ -24,7 +24,7 @@ function Dashboard(props) {
     const users = JSON.parse(localStorage.getItem('users'))
     const user = users.find(user => user.email === currentUser.email);
     user.adminBalance = currentUser.adminBalance;
-    user.expenses = currentUser.expenses
+    user.expenses = currentUser.expenses;
     localStorage.setItem('users', JSON.stringify(users));
     localStorage.removeItem('currentUser');
   }
@@ -57,7 +57,7 @@ function Dashboard(props) {
         </div>
         </div>
 
-        <Budget setExpenses={setExpenses} />
+        <Budget adminBalance={adminBalance} setAdminBalance={setAdminBalance} setExpenses={setExpenses} />
 
         <button className='logout-btn' onClick={handleLogout}>
           <Link to='/' className='logout-link'>Logout</Link>
