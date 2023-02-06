@@ -38,7 +38,7 @@ function LoginRegister(props){
             lastName: e.target.elements.lastName.value,
             email: e.target.elements.email.value,
             password: e.target.elements.password.value,
-            adminBalance: 0,
+            adminBalance: +e.target.elements.deposit.value,
             expenses: [],
         }
 
@@ -140,6 +140,10 @@ function LoginRegister(props){
                     <label className='reg-label'>
                         Password:
                         <input type="password" name='password' className='reg-input' required placeholder='Enter your password'/>
+                    </label>
+                    <label className='reg-label'>
+                        Initial Deposit:
+                        <input type="text" name='deposit' className='reg-input' required placeholder='Enter your initial deposit'/>
                     </label>
 
                     <button className='reg-btn'>Submit</button>

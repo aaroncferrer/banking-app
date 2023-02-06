@@ -74,7 +74,7 @@ function Budget(props){
                     <tr key={index}>
                         <td className='budget-first-column'>{expense.expense}</td>
                         <td className='budget-second-column'>${expense.cost}.00</td>
-                        <td>
+                        <td style={{textAlign: 'center'}}>
                         <FontAwesomeIcon 
                             className='budget-action' 
                             icon={faPencil} 

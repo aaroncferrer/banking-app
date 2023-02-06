@@ -68,7 +68,7 @@ function ModalComponent(props){
                         />
                     </form>
                 </div>
-
+                
                 <div className="edit budget-modal" style={{display: showEdit ? 'block' : 'none'}}>
                     <form className='edit budget-form'>
                         <h2 className="edit budget-form-header">Edit Expense</h2>
