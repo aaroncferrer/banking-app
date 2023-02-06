@@ -10,7 +10,8 @@ function Deposit(props){
     const {setAdminBalance, adminBalance} = props;
     const [inputValue, setInputValue] = useState('');
 
-    const onTransaction = () => {
+    const onTransaction = (e) => {
+        e.preventDefault();
         setAdminBalance(adminBalance + +inputValue);
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         currentUser.adminBalance = adminBalance + +inputValue;

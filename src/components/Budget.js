@@ -15,6 +15,7 @@ function Budget(props){
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [showBudget, setShowBudget] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
+    const [editIndex, setEditIndex] = useState(0);
 
     function onTransaction(e){
         e.preventDefault();
@@ -26,7 +27,7 @@ function Budget(props){
             alert('Insufficient fund.');
             return;
         }else if(costValue === '' || expenseValue === ''){
-            alert('Test');
+            alert('Make sure all input fields are filled.');
             return
         }else {
             const newExpense = {
@@ -41,21 +42,33 @@ function Budget(props){
             setExpenseValue('');
             setCostValue('');
         }
+        setModalIsOpen(false);
     }
 
-    function editExpense(index){
+    function editExpense(e, index, updatedExpenseValue, updatedCostValue){
+        e.preventDefault();
         const currentExpense = currentUser.expenses[index];
-        console.log(currentExpense);
-        expenseValue = currentExpense.expense;
-        costValue = currentExpense.cost;
+        currentExpense.expense = updatedExpenseValue;
+        const diffValue = updatedCostValue - currentExpense.cost
+        if((currentUser.adminBalance = adminBalance - +diffValue) < 0){
+            alert('Insufficient funds.');
+            return
+        }
+        setAdminBalance(adminBalance - +diffValue);
+        currentUser.adminBalance = adminBalance - +diffValue;
+        currentExpense.cost = updatedCostValue;
         setExpenses(currentUser.expenses);        
-        localStorage.setItem('currenUser', JSON.stringify(currentUser));
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        setModalIsOpen(false);
     }
 
     function deleteExpense(index){
-        currentUser.expenses.splice(index, 1); // Modifies the original array
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        // Modifies the original array
+        const deletedExpense = currentUser.expenses.splice(index, 1);
+        setAdminBalance(adminBalance + +deletedExpense[0].cost);
+        currentUser.adminBalance = adminBalance + +deletedExpense[0].cost;
         setExpenses(currentUser.expenses);
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
     }
 
     return(
@@ -74,12 +87,14 @@ function Budget(props){
                     <tr key={index}>
                         <td className='budget-first-column'>{expense.expense}</td>
                         <td className='budget-second-column'>${expense.cost}.00</td>
-                        <td style={{textAlign: 'center'}}>
+                        <td>
                         <FontAwesomeIcon 
                             className='budget-action' 
                             icon={faPencil} 
                             onClick={() => 
-                                {setModalIsOpen(true); 
+                                {setModalIsOpen(true);
+                                setShowBudget(false);
+                                setEditIndex(index); 
                                 setShowEdit(true);
                                 setExpenseValue(currentUser.expenses[index].expense); 
                                 setCostValue(currentUser.expenses[index].cost);
@@ -94,12 +109,21 @@ function Budget(props){
                     </tr>
                 ))}
             </tbody>
-            <button className="budget-btn" onClick={() => {setModalIsOpen(true); setShowBudget(true)}}>
+            <button 
+                className="budget-btn" 
+                onClick={() => {
+                    setModalIsOpen(true); 
+                    setShowBudget(true); 
+                    setShowEdit(false);
+                    setExpenseValue(''); 
+                    setCostValue('');
+                    }}
+                >
                 Add Expense
             </button>
         </table>
         
-        <ModalComponent modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} showBudget={showBudget} onTransaction={onTransaction} expenseValue={expenseValue} setExpenseValue={setExpenseValue} costValue={costValue} setCostValue={setCostValue} showEdit={showEdit} editExpense={editExpense} />
+        <ModalComponent modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} showBudget={showBudget} onTransaction={onTransaction} expenseValue={expenseValue} setExpenseValue={setExpenseValue} costValue={costValue} setCostValue={setCostValue} showEdit={showEdit} editExpense={editExpense} editIndex={editIndex} />
 
         </>
     )

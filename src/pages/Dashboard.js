@@ -45,7 +45,7 @@ function Dashboard(props) {
           <h4 className="acct-number">6353 7863 5274 9817</h4>
           <div className='money-footer'>
             <p className="date">{month}/{dayNumber}/{year}</p>
-            <span className="card-type">VISA</span>
+            <span className="card-type" style={{fontStyle: 'italic'}}>VISA</span>
           </div>
         </div>
 

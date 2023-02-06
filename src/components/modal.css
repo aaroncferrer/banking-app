@@ -14,7 +14,7 @@
 }
 
 .modal-btns-container {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .modal-btns {
@@ -41,6 +41,11 @@
 .send-select, .send-input {
     font-family: 'Kanit', sans-serif;
     padding: 5px;
+}
+
+.send-modal h2{
+    font-family: 'Kanit', sans-serif;
+    margin-bottom: 5px;
 }
 
 .budget-form {

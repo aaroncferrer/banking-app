@@ -10,7 +10,8 @@ function Withdraw(props){
     const {setAdminBalance, adminBalance} = props;
     const [inputValue, setInputValue] = useState('');
 
-    const onTransaction = () => {
+    const onTransaction = (e) => {
+        e.preventDefault();
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
         if(currentUser.adminBalance <= 0 || inputValue > currentUser.adminBalance){
