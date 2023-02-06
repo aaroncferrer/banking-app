@@ -9,20 +9,24 @@ function Budget(props){
     const {setExpenses,adminBalance, setAdminBalance} = props;
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-    const [expenseValue, setExpenseValue] = useState('');
-    const [costValue, setCostValue] = useState('');
+    let [expenseValue, setExpenseValue] = useState('');
+    let [costValue, setCostValue] = useState('');
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [showBudget, setShowBudget] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
 
     function onTransaction(e){
         e.preventDefault();
 
         if(currentUser.expenses.length >= 5){
-            alert('Max of 5 items only. Delete or edit a task instead.')
-            return
+            alert('Max of 5 items only. Delete or edit a task instead.');
+            return;
         }else if(+costValue > currentUser.adminBalance){
-            alert('Insufficient fund.')
+            alert('Insufficient fund.');
+            return;
+        }else if(costValue === '' || expenseValue === ''){
+            alert('Test');
             return
         }else {
             const newExpense = {
@@ -34,15 +38,22 @@ function Budget(props){
             setAdminBalance(adminBalance - +costValue);
             currentUser.adminBalance = adminBalance - +costValue;
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            setExpenseValue('');
+            setCostValue('');
         }
     }
 
-    function editExpense(){
-
+    function editExpense(index){
+        const currentExpense = currentUser.expenses[index];
+        console.log(currentExpense);
+        expenseValue = currentExpense.expense;
+        costValue = currentExpense.cost;
+        setExpenses(currentUser.expenses);        
+        localStorage.setItem('currenUser', JSON.stringify(currentUser));
     }
 
     function deleteExpense(index){
-        currentUser.expenses.splice(index, 1);
+        currentUser.expenses.splice(index, 1); // Modifies the original array
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         setExpenses(currentUser.expenses);
     }
@@ -67,7 +78,12 @@ function Budget(props){
                         <FontAwesomeIcon 
                             className='budget-action' 
                             icon={faPencil} 
-                            onClick
+                            onClick={() => 
+                                {setModalIsOpen(true); 
+                                setShowEdit(true);
+                                setExpenseValue(currentUser.expenses[index].expense); 
+                                setCostValue(currentUser.expenses[index].cost);
+                                }}
                         />
                         <FontAwesomeIcon 
                             className='budget-action' 
@@ -83,7 +99,7 @@ function Budget(props){
             </button>
         </table>
         
-        <ModalComponent modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} showBudget={showBudget} onTransaction={onTransaction} expenseValue={expenseValue} setExpenseValue={setExpenseValue} costValue={costValue} setCostValue={setCostValue} />
+        <ModalComponent modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} showBudget={showBudget} onTransaction={onTransaction} expenseValue={expenseValue} setExpenseValue={setExpenseValue} costValue={costValue} setCostValue={setCostValue} showEdit={showEdit} editExpense={editExpense} />
 
         </>
     )
