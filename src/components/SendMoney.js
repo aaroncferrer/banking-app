@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons'
-// import Modal from 'react-modal';
 import { useState } from 'react';
 import ModalComponent from './ModalComponent';
 
@@ -17,8 +16,6 @@ function SendMoney(props){
 
     const handleSelect = (e) => setSelectedUser(e.target.value);
     const handleAmount = (e) => setAmount(e.target.value);
-    // const openModal = () => setModalIsOpen(true);
-    // const closeModal = () => setModalIsOpen(false);
 
     function onTransaction(e){
         e.preventDefault();

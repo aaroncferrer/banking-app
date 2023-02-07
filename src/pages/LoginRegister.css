@@ -1,4 +1,5 @@
 .container {
+    padding-top: 50px;
     height: 100vh;
     font-family: 'Kanit', sans-serif;
     transform: translateY(-180px);
@@ -53,7 +54,7 @@
     padding: 10px;
     font-family: 'Kanit', sans-serif;
     width: 350px;
-    margin-bottom: 15px;
+    margin: 15px;
 }
 
 .sign-up {
@@ -113,9 +114,10 @@
     background-color: #605e5e;
     color: white;
     transition: all 0.3s ease-in-out;
-    margin-top: 5px;
+    margin-top: 15px;
 }
 
 .reg-btn:hover {
     background-color: #413f3f;
 }
+

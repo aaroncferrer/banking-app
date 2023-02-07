@@ -108,10 +108,10 @@ function LoginRegister(props){
                 },
                 content: {
                 position: 'absolute',
-                top: '15%',
+                top: '10%',
                 left: '35%',
                 right: '35%',
-                bottom: '10%',
+                bottom: '15%',
                 border: 'none',
                 background: '#f3e9e9',
                 overflow: 'auto',

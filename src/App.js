@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import LoginRegister from "./pages/LoginRegister";
 import { useState } from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Footer from './components/Footer';
 
 function App(){
 
@@ -17,6 +18,7 @@ function App(){
         <Route exact path='/' element={<LoginRegister adminBalance={adminBalance} setAdminBalance={setAdminBalance} />} />
         <Route exact path='/dashboard' element={<Dashboard adminBalance={adminBalance} setAdminBalance={setAdminBalance} expenses={expenses} setExpenses={setExpenses} />} />
       </Routes>
+      <Footer />
     </>
     </Router>
   )
