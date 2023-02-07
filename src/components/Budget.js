@@ -3,11 +3,13 @@ import { faTrash, faPencil } from '@fortawesome/free-solid-svg-icons';
 import './budget.css';
 import { useState } from 'react';
 import ModalComponent from './ModalComponent';
+import { v4 as uuidv4 } from 'uuid';
 
 function Budget(props){
 
     const {setExpenses,adminBalance, setAdminBalance} = props;
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const expenseId = uuidv4();
 
     let [expenseValue, setExpenseValue] = useState('');
     let [costValue, setCostValue] = useState('');
@@ -32,7 +34,8 @@ function Budget(props){
         }else {
             const newExpense = {
                 expense: expenseValue,
-                cost: +costValue
+                cost: +costValue,
+                expenseId: expenseId
             }
             setExpenses(newExpense)
             currentUser.expenses.push(newExpense);
@@ -45,9 +48,9 @@ function Budget(props){
         setModalIsOpen(false);
     }
 
-    function editExpense(e, index, updatedExpenseValue, updatedCostValue){
+    function editExpense(e, expenseId, updatedExpenseValue, updatedCostValue){
         e.preventDefault();
-        const currentExpense = currentUser.expenses[index];
+        const currentExpense = currentUser.expenses.find(expense => expense.expenseId === expenseId);
         currentExpense.expense = updatedExpenseValue;
         const diffValue = updatedCostValue - currentExpense.cost
         if((currentUser.adminBalance = adminBalance - +diffValue) < 0){
@@ -62,9 +65,14 @@ function Budget(props){
         setModalIsOpen(false);
     }
 
-    function deleteExpense(index){
-        // Modifies the original array
-        const deletedExpense = currentUser.expenses.splice(index, 1);
+    function deleteExpense(expenseId){
+        const expenseIndex = currentUser.expenses.findIndex(expense => expense.expenseId === expenseId)
+        if(expenseIndex === -1){
+            console.error(`Expense with id ${expenseId} not found`);
+            return;
+        }
+
+        const deletedExpense = currentUser.expenses.splice(expenseIndex, 1);
         setAdminBalance(adminBalance + +deletedExpense[0].cost);
         currentUser.adminBalance = adminBalance + +deletedExpense[0].cost;
         setExpenses(currentUser.expenses);
@@ -83,8 +91,8 @@ function Budget(props){
                 </tr>
             </thead>
             <tbody>
-                {currentUser.expenses.map((expense, index) => (
-                    <tr key={index}>
+                {currentUser.expenses.map((expense) => (
+                    <tr key={expense.expenseId}>
                         <td className='budget-first-column'>{expense.expense}</td>
                         <td className='budget-second-column'>${expense.cost}.00</td>
                         <td>
@@ -94,16 +102,17 @@ function Budget(props){
                             onClick={() => 
                                 {setModalIsOpen(true);
                                 setShowBudget(false);
-                                setEditIndex(index); 
+                                setEditIndex(expense.expenseId); 
                                 setShowEdit(true);
-                                setExpenseValue(currentUser.expenses[index].expense); 
-                                setCostValue(currentUser.expenses[index].cost);
+                                const currentExpense = currentUser.expenses.find(e => e.expenseId === expense.expenseId)
+                                setExpenseValue(currentExpense.expense); 
+                                setCostValue(currentExpense.cost);
                                 }}
                         />
                         <FontAwesomeIcon 
                             className='budget-action' 
                             icon={faTrash}
-                            onClick={() => deleteExpense(index)}                  
+                            onClick={() => deleteExpense(expense.expenseId)}                  
                             />
                         </td>
                     </tr>
