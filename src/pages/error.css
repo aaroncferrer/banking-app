@@ -1,0 +1,40 @@
+.error-container {
+    height: 100vh;
+    font-family: 'Kanit', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0px 250px;
+    transform: translateY(-15px);
+}
+
+.error-container h1 {
+    font-size: 90px;
+}
+
+.error-container h2 {
+    font-size: 20px;
+    padding: 0 100px;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+
+.error-container p {
+    padding: 0 80px;
+    margin-bottom: 50px;
+}
+
+.homepage-link {
+    cursor: pointer;
+    color: #ba433c;
+    text-decoration: underline;
+}
+
+.error-img {
+    position: absolute;
+    bottom: -15px;
+    left: 25px;
+    width: 400px;
+}

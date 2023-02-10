@@ -73,14 +73,14 @@ function ModalComponent(props){
                         <input 
                             type='text'
                             className='edit budget-input' 
-                            placeholder='Input expense'
+                            placeholder='Input expense name'
                             value={expenseValue} 
                             onChange={e => setExpenseValue(e.target.value)}
                         />
                         <input 
                             type='text'
                             className='edit budget-input' 
-                            placeholder='Input cost'
+                            placeholder='Input expense cost'
                             value={costValue} 
                             onChange={e => setCostValue(e.target.value)}
                         />

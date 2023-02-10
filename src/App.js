@@ -5,6 +5,7 @@ import LoginRegister from "./pages/LoginRegister";
 import { useState } from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Footer from './components/Footer';
+import Error from './pages/Error';
 
 function App(){
 
@@ -17,6 +18,7 @@ function App(){
       <Routes>
         <Route exact path='/' element={<LoginRegister adminBalance={adminBalance} setAdminBalance={setAdminBalance} />} />
         <Route exact path='/dashboard' element={<Dashboard adminBalance={adminBalance} setAdminBalance={setAdminBalance} expenses={expenses} setExpenses={setExpenses} />} />
+        <Route exact path='*' element={<Error />} />
       </Routes>
       <Footer />
     </>

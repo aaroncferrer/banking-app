@@ -21,6 +21,11 @@ function Budget(props){
 
     function onTransaction(e){
         e.preventDefault();
+        console.log(typeof costValue);
+
+        costValue = parseFloat(costValue);
+
+        console.log(typeof costValue);
 
         if(currentUser.expenses.length >= 5){
             alert('Max of 5 items only. Delete or edit a task instead.');
@@ -31,6 +36,9 @@ function Budget(props){
         }else if(costValue === '' || expenseValue === ''){
             alert('Make sure all input fields are filled.');
             return
+        }else if(isNaN(costValue)){
+            alert('Invalid expense cost.');
+            return;
         }else {
             const newExpense = {
                 expense: expenseValue,
