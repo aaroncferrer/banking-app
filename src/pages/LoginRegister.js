@@ -33,18 +33,34 @@ function LoginRegister(props){
     function handleSubmit(e) {
         e.preventDefault();
         
-        const newUser = {
-            firstName: e.target.elements.firstName.value,
-            lastName: e.target.elements.lastName.value,
-            email: e.target.elements.email.value,
-            password: e.target.elements.password.value,
-            adminBalance: +e.target.elements.deposit.value,
-            expenses: [],
-        }
+        const firstName = e.target.elements.firstName.value;
+        const lastName = e.target.elements.lastName.value;
+        const email = e.target.elements.email.value;
+        const password = e.target.elements.password.value;
+        const confirmPassword = e.target.elements.confirmPassword.value;
+        const deposit = +e.target.elements.deposit.value;
 
+        const newUser = {
+            firstName,
+            lastName,
+            email,
+            password,
+            adminBalance: deposit,
+            expenses: []
+        }
+        
         const emailExists = users.find(user => user.email === newUser.email);
         if(emailExists){
-            return alert('Email is already used.');
+            alert('Email is already used.');
+            return;
+        }
+        if(password !== confirmPassword){
+            alert('Passwords do not match. Please try again.');
+            return;
+        }
+        if(isNaN(deposit)){
+            alert('Invalid deposit input. Please enter a number');
+            return;
         }
 
         users.push(newUser);
@@ -108,10 +124,10 @@ function LoginRegister(props){
                 },
                 content: {
                 position: 'absolute',
-                top: '10%',
-                left: '35%',
-                right: '35%',
-                bottom: '15%',
+                top: '8%',
+                left: '30%',
+                right: '30%',
+                bottom: '8%',
                 border: 'none',
                 background: '#f3e9e9',
                 overflow: 'auto',
@@ -140,6 +156,10 @@ function LoginRegister(props){
                     <label className='reg-label'>
                         Password:
                         <input type="password" name='password' className='reg-input' required placeholder='Enter your password'/>
+                    </label>
+                    <label className='reg-label'>
+                        Confirm Password:
+                        <input type="password" name='confirmPassword' className='reg-input' required placeholder='Re-enter your password'/>
                     </label>
                     <label className='reg-label'>
                         Initial Deposit:

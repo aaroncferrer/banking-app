@@ -35,4 +35,5 @@ After the packages are installed, you can start the app with the following comma
 
 ### `npm start`
 
-Open your browser and navigate to http://localhost:3000 to use the app.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
